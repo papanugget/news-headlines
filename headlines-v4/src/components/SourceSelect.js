@@ -1,9 +1,17 @@
 import React from 'react';
 
 class SourceSelect extends React.Component {
+    // state to hold selected news sources
+    state = {
+        selectedSource: null
+    }
     render() {
         return (
-            <div> This is the SourceSelect Component</div>
+                <div className="column"> 
+                    <div className="ui segment">
+                        SourceSelect
+                    </div>                    
+                </div>          
         )
     }
 }
