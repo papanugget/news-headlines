@@ -3,7 +3,6 @@ import ArticleItem from './ArticleItem';
 
 const HeadlineList = (props) => {
     const articles = props.sourceHeadlines;
-    console.log(articles);
     const renderedList = articles.map( (article, idx) => {
         return <ArticleItem article={article} key={idx}/>
     })

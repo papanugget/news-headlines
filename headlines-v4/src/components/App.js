@@ -12,11 +12,10 @@ class App extends React.Component {
         error: null,
         sourceHeadlines: []
     };
-    // function to get news sources 
+    // get news sources 
     getSources = async () => {
         // get res from news api
         const res = await news.get(`sources?${news.defaults.headers.Authorization}`)
-        // console.log(res);
         // if response is ok
         if(res.status === 200) {
             // have the response data filtered out by english lang
@@ -27,9 +26,7 @@ class App extends React.Component {
             })
             // set the state sources to contain all english sources
             this.setState({sources: englishSources, isLoading: false})
-            // console.log(this.state.sources)
         }
-        // console.log(this.state)
     };
     // run getSources func when component mounts
     componentDidMount() {
@@ -42,7 +39,6 @@ class App extends React.Component {
         if(res.status === 200) {
             this.setState({sourceHeadlines: res.data.articles})
         }  
-        // console.log(this.state.sourceHeadlines)
     };
     render() {
         return (
