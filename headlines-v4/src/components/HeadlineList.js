@@ -1,25 +1,16 @@
 import React from 'react';
+import ArticleItem from './ArticleItem';
 
-const HeadlineList = () => {
+const HeadlineList = (props) => {
+    const articles = props.sourceHeadlines;
+    console.log(articles);
+    const renderedList = articles.map( (article, idx) => {
+        return <ArticleItem article={article} key={idx}/>
+    })
     return (
         <div className="row">
             <div className="ui two column stackable grid container">
-                <div className="column">
-                    <div className="ui top attached info message">Info</div>
-                    <div className="ui bottom attached segment">Panel content</div>
-                </div>
-
-                <div className="column">
-                    <div className="ui segment">Content</div>
-                </div>
-
-                <div className="column">
-                    <div className="ui segment">Content</div>
-                </div>
-
-                <div className="column">
-                    <div className="ui segment">Content</div>
-                </div>
+                {renderedList}
             </div>
         </div>
     )

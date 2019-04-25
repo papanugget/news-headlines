@@ -18,7 +18,6 @@ class SourceSelect extends React.Component {
             }
         })
         this.props.onSourceSelect(this.state.selectedSourceId);
-        // this.props.onSourceSubmit(this.state.selectedSourceId);
     };
     render() {
         const sources = this.props.availableSources.map((source, idx) => {
@@ -40,7 +39,7 @@ class SourceSelect extends React.Component {
                             <select onChange={this.sourceClick} className="ui fluid dropdown">
                                 {sources}
                             </select>
-                            <br/><br/>
+                            <br/>
                             <button className="ui button primary" type="submit" value="Submit">Submit</button>
                         </form>
                     </div>                    

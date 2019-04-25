@@ -9,7 +9,8 @@ class App extends React.Component {
         sources: [],
         selectedSource: null,
         isLoading: true,
-        error: null
+        error: null,
+        sourceHeadlines: []
     };
     // function to get news sources 
     getSources = async () => {
@@ -38,23 +39,35 @@ class App extends React.Component {
     onSourceSelect = async (source) => {
         this.setState({selectedSource: source});
         const res = await news.get(`top-headlines?sources=${source}&${news.defaults.headers.Authorization}`);
-        console.log(res);
+        if(res.status === 200) {
+            this.setState({sourceHeadlines: res.data.articles})
+        }  
+        // console.log(this.state.sourceHeadlines)
     };
     render() {
         return (
             <div className="ui grid container">
                 <div className="row">
                     <div className="column">
-                        <div className="ui message">
+                        <div className="ui message orange ">
                             <h1 className="ui header"> Latest Headlines App</h1>
                             <p>Select a news source and get the 10 latest headlines</p>
                         </div>
                     </div>                 
                 </div>
-                {!this.state.isLoading ? (<div className="row">
-                    <SourceSelect availableSources={this.state.sources} onSourceSelect={this.onSourceSelect} /> 
-                </div>) : (<div className="row">News sources are loading please wait</div>)}
-                <HeadlineList/>
+                {!this.state.isLoading ? (
+                    <div className="row">
+                        <SourceSelect availableSources={this.state.sources} onSourceSelect={this.onSourceSelect} /> 
+                    </div>) : (
+                    <div className="row">News sources are loading please wait</div>)
+                }
+                {this.state.sourceHeadlines.length !== 0 ? (
+                    <HeadlineList sourceHeadlines={this.state.sourceHeadlines}/>
+                ) : (
+                    <div></div>
+                )
+                }
+                
             </div>
         )
     }
